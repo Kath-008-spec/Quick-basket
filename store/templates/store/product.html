@@ -1,0 +1,43 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}QuickBasket - Products{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="section-title">All Products</h1>
+    
+    <div class="products-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <div class="product-badge">Available</div>
+                <div class="product-image">
+                    <img src="{% static 'store/images/product-placeholder.jpg' %}" alt="{{ product.name }}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlPC90ZXh0Pjwvc3ZnPg=='">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-price">₦{{ product.price }}</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(4.5)</span>
+                    </div>
+                    <button class="buy-now-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        {% empty %}
+            <div class="no-products">
+                <i class="fas fa-box-open"></i>
+                <h3>No products available yet</h3>
+                <p>Check back soon for amazing products!</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

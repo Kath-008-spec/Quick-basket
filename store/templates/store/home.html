@@ -1,0 +1,270 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}QuickBasket - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-slider">
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Shop Smart, Live Better</h1>
+                    <p class="hero-subtitle">Discover amazing products at unbeatable prices. Free shipping on orders over ₦50,000.</p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'product' %}" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag"></i>
+                            Shop Now
+                        </a>
+                        <a href="#featured" class="btn btn-outline">
+                            <i class="fas fa-star"></i>
+                            Featured Products
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="{% static 'store/images/hero-shopping.png' %}" alt="Shopping" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-indicators">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+    </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-shipping-fast"></i>
+                <div class="stat-content">
+                    <h3>Free Shipping</h3>
+                    <p>On orders over ₦50,000</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-shield-alt"></i>
+                <div class="stat-content">
+                    <h3>Secure Payment</h3>
+                    <p>100% secure checkout</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-undo"></i>
+                <div class="stat-content">
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-headset"></i>
+                <div class="stat-content">
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-subtitle">Find what you're looking for in our curated categories</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Fashion & Apparel</h3>
+                    <p>Trendy clothing, shoes & accessories</p>
+                    <span class="category-count">500+ items</span>
+                    <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Electronics</h3>
+                    <p>Latest gadgets & smart devices</p>
+                    <span class="category-count">300+ items</span>
+                    <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Home & Living</h3>
+                    <p>Furniture, decor & kitchen essentials</p>
+                    <span class="category-count">400+ items</span>
+                    <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="category-content">
+                    <h3>Sports & Fitness</h3>
+                    <p>Equipment, apparel & wellness</p>
+                    <span class="category-count">200+ items</span>
+                    <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="featured" class="featured-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Handpicked products you'll love</p>
+        </div>
+        <div class="products-grid">
+            {% for product in products|slice:":8" %}
+            <div class="product-card">
+                <div class="product-badges">
+                    {% if forloop.counter <= 2 %}
+                    <span class="badge badge-hot">Hot</span>
+                    {% endif %}
+                    <span class="badge badge-new">New</span>
+                </div>
+                <div class="product-image">
+                    <img src="{% static 'store/images/product-placeholder.jpg' %}" alt="{{ product.name }}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlPC90ZXh0Pjwvc3ZnPg=='">
+                    <div class="product-actions">
+                        <button class="action-btn wishlist-btn" title="Add to Wishlist">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn quickview-btn" title="Quick View">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Electronics</div>
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-count">(4.5)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₦{{ product.price }}</span>
+                        <span class="original-price">₦{{ product.price|add:5000 }}</span>
+                        <span class="discount">-20%</span>
+                    </div>
+                    <div class="product-actions-bottom">
+                        <button class="btn btn-primary add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                        <button class="btn btn-outline buy-now">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-products">
+                <div class="no-products-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h3>No products available yet</h3>
+                <p>We're working hard to bring you amazing products. Check back soon!</p>
+                <a href="{% url 'product' %}" class="btn btn-primary">Browse All Products</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="view-all-container">
+            <a href="{% url 'product' %}" class="btn btn-outline">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- Promotional Banner -->
+<section class="promo-section">
+    <div class="container">
+        <div class="promo-banner">
+            <div class="promo-content">
+                <h2>Summer Sale</h2>
+                <h3>Up to 70% Off</h3>
+                <p>On selected fashion and electronics items. Limited time offer!</p>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="number">02</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number">18</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number">45</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-primary">Shop Sale</a>
+            </div>
+            <div class="promo-image">
+                <i class="fas fa-gift"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-text">
+                <h2>Stay in the Loop</h2>
+                <p>Subscribe to our newsletter for exclusive deals, new product alerts, and insider tips!</p>
+                <div class="newsletter-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-check"></i>
+                        <span>Exclusive discounts</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-check"></i>
+                        <span>Early access to sales</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-check"></i>
+                        <span>New product notifications</span>
+                    </div>
+                </div>
+            </div>
+            <div class="newsletter-form">
+                <form>
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="form-note">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

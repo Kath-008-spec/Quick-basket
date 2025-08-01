@@ -1,0 +1,144 @@
+{% extends 'store/base.html' %}
+
+{% block title %}QuickBasket - Login{% endblock %}
+
+{% block extra_css %}
+<style>
+            .auth-container {
+                min-height: calc(100vh - 70px - 300px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 40px 20px;
+            }
+            .auth-card {
+                background: rgba(255, 255, 255, 0.98);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 420px;
+                text-align: center;
+                backdrop-filter: blur(10px);
+            }
+            h1 {
+                color: #4a5568;
+                margin-bottom: 30px;
+                font-size: 2.5em;
+                font-weight: 700;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            form {
+                text-align: left;
+            }
+            .form-group {
+                margin-bottom: 24px;
+            }
+            label {
+                display: block;
+                margin-bottom: 8px;
+                color: #4a5568;
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            input[type="text"], input[type="password"], input[type="email"] {
+                width: 100%;
+                padding: 16px;
+                border: 2px solid #e2e8f0;
+                border-radius: 12px;
+                font-size: 16px;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+                background: #f8fafc;
+            }
+            input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+                outline: none;
+                border-color: #667eea;
+                background: white;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+                transform: translateY(-2px);
+            }
+            button {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 16px 32px;
+                border: none;
+                border-radius: 12px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                width: 100%;
+                margin-top: 24px;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+                background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            }
+            button:active {
+                transform: translateY(-1px);
+            }
+            .signup-link {
+                margin-top: 30px;
+                color: #718096;
+                font-size: 16px;
+            }
+            .signup-link a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                border-bottom: 2px solid transparent;
+            }
+            .signup-link a:hover {
+                color: #5a67d8;
+                border-bottom-color: #5a67d8;
+            }
+            .errorlist {
+                color: #e53e3e;
+                list-style: none;
+                padding: 0;
+                margin: 8px 0;
+                font-size: 14px;
+                background: #fed7d7;
+                padding: 8px 12px;
+                border-radius: 8px;
+                border-left: 4px solid #e53e3e;
+            }
+        </style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit">Login</button>
+        </form>
+        <p class="signup-link">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</div>
+{% endblock %}
