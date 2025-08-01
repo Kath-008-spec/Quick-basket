@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['quick-basket-5kzd.onrender.com', '127.0.0.1', 'localhost']
 
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
