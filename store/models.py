@@ -25,7 +25,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    try:
+        instance.profile.save()
+    except UserProfile.DoesNotExist:
+        UserProfile.objects.create(user=instance)
 
 # adding product model for the store 
 class Product(models.Model):  # Defines a new model called Product
