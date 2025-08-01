@@ -2,18 +2,28 @@
 # used to render HTML templates 
 
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Product
 from .forms import CustomSignUpForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+def test_view(request):
+    """Simple test view to check if Django is working"""
+    return HttpResponse("Django is working! QuickBasket is running.")
+
 def product_view(request):
     products = Product.objects.all()
     return render(request, 'store/product.html', {'products': products})
 
 def home_view(request):
-    products = Product.objects.all()[:4]  # Get first 4 products for featured section
+    try:
+        products = Product.objects.all()[:4]  # Get first 4 products for featured section
+    except Exception as e:
+        # If there's any database error, just use empty list
+        products = []
+    
     return render(request, 'store/home.html', {'products': products})
 
 def signup_view(request):

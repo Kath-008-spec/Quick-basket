@@ -3,6 +3,7 @@ from .import views #imports the views.py
 
 
 urlpatterns = [
+    path('test/', views.test_view, name='test'),              # test page to debug
     path('', views.home_view, name='home'),             # new homepage
     path('products/', views.product_view, name='product'),  # products page
     path('accounts/login/', views.login_view, name='login'),  # custom login page
