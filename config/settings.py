@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-o&g$p7us99i#m))!k-w)9#h(ez^-q#43!7o$k93i3#emf@r%&e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-domain.com', 'www.your-domain.com']
+ALLOWED_HOSTS = ['quick-basket-5kzd.onrender.com', '127.0.0.1', 'localhost']
+
 
 
 
@@ -119,6 +120,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 import os
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'store', 'static'),
