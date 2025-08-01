@@ -130,13 +130,9 @@
                             </a>
                         </div>
                     {% else %}
-                        <a href="{% url 'login' %}" class="nav-action">
+                        <a href="{% url 'login' %}" class="nav-action login-btn">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>Login</span>
-                        </a>
-                        <a href="{% url 'signup' %}" class="nav-action signup-btn">
-                            <i class="fas fa-user-plus"></i>
-                            <span>Sign Up</span>
                         </a>
                     {% endif %}
                 </div>
